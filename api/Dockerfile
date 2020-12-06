@@ -4,6 +4,7 @@ RUN mkdir /api
 WORKDIR /api
 COPY Gemfile /api/Gemfile
 COPY Gemfile.lock /api/Gemfile.lock
+COPY Rakefile /api/Rakefile
 RUN gem install bundler && bundle install && rake db:create && rake db:migrate
 COPY . /api
 EXPOSE 3000
