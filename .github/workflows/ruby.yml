@@ -6,7 +6,6 @@
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
 name: Ruby
-working-directory: ./api
 
 on:
   push:
@@ -28,6 +27,8 @@ jobs:
       uses: ruby/setup-ruby@21351ecc0a7c196081abca5dc55b08f085efe09a
       with:
         ruby-version: 2.6
+    - name: cd into rails folder
+      run: cd ./api
     - name: Install dependencies
       run: bundle install
     - name: Run tests
