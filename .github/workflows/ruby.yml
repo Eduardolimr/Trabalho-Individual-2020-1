@@ -6,6 +6,7 @@
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
 name: Ruby
+working-directory: ~/repo/api
 
 on:
   push:
