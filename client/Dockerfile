@@ -1,7 +1,5 @@
-FROM node:15
+FROM node:lts-alpine
 WORKDIR /client
 COPY ./package*.json ./client/package*.json
-RUN yarn install
-RUN yarn global add @vue/cli@4.4.6
+RUN yarn install --all
 COPY . .
-RUN yarn dev
