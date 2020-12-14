@@ -1,11 +1,15 @@
 FROM ruby:2.5.8
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-RUN mkdir /api
-WORKDIR /api
-COPY Gemfile /api/Gemfile
-COPY Gemfile.lock /api/Gemfile.lock
-EXPOSE 5432
-COPY Rakefile /api/Rakefile
-RUN gem install bundler && bundle install && rake db:create && rake db:migrate
-COPY . /api
+
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN gem install bundler
+RUN bundle install
+COPY . /myapp
+
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000

@@ -40,3 +40,10 @@ Para esta parte do trabalho, poderá ser utilizada qualquer tecnologia ou ferram
 ### 3. Deploy contínuo (Extra)
 
 Caso cumpra todos os requisitos descritos acima, será atribuída uma pontuação extra para o aluno que configure sua pipeline de modo a publicar a aplicação automaticamente, sempre que um novo trecho de código seja integrado à branch default.
+
+
+### Como rodar
+
+```
+docker-compose up -d --build
+```
