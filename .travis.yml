@@ -2,7 +2,7 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.28.0-rc1
+  - DOCKER_COMPOSE_VERSION=1.27.3
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -11,5 +11,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose up --build -d
+  - docker-compose run api rake db:setup RAILS_ENV=test
+  - docker-compose run api bundle exec rails test
+  - docker run client yarn test:unit
   - docker-compose down
